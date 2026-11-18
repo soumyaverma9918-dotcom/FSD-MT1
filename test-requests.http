@@ -1,0 +1,90 @@
+### Student Course Enrollment API (SET B) - Manual Test Suite
+### Student: Soumya Verma | Section: CSE 36
+@baseUrl = http://localhost:3000
+
+### 0. Welcome / Health Check
+GET {{baseUrl}}/
+
+### 1. GET all enrollments (HTTP 200)
+GET {{baseUrl}}/api/enrollments
+
+### 2. GET low-attendance enrollments (attendance < 75) (HTTP 200)
+GET {{baseUrl}}/api/enrollments/low-attendance
+
+### 3. Filter enrollments by semester (HTTP 200)
+GET {{baseUrl}}/api/enrollments/filter?semester=3
+
+### 4. Filter enrollments by non-matching semester (returns [] HTTP 200)
+GET {{baseUrl}}/api/enrollments/filter?semester=8
+
+### 5. GET enrollment by valid ID (HTTP 200)
+GET {{baseUrl}}/api/enrollments/601
+
+### 6. GET enrollment by non-existent ID (HTTP 404)
+GET {{baseUrl}}/api/enrollments/999
+
+### 7. POST a new enrollment (HTTP 201)
+POST {{baseUrl}}/api/enrollments
+Content-Type: application/json
+
+{
+  "studentName": "Ishita Rao",
+  "courseCode": "CS315",
+  "courseName": "Operating Systems",
+  "semester": 3,
+  "attendance": 88
+}
+
+### 8. POST with invalid attendance (> 100) (HTTP 400)
+POST {{baseUrl}}/api/enrollments
+Content-Type: application/json
+
+{
+  "studentName": "Invalid Attendance",
+  "courseCode": "CS320",
+  "courseName": "Compiler Design",
+  "semester": 3,
+  "attendance": 120
+}
+
+### 9. POST with invalid semester (< 1) (HTTP 400)
+POST {{baseUrl}}/api/enrollments
+Content-Type: application/json
+
+{
+  "studentName": "Invalid Semester",
+  "courseCode": "CS320",
+  "courseName": "Compiler Design",
+  "semester": -2,
+  "attendance": 75
+}
+
+### 10. PUT / update existing enrollment (HTTP 200)
+PUT {{baseUrl}}/api/enrollments/601
+Content-Type: application/json
+
+{
+  "studentName": "Aarav Gupta",
+  "courseCode": "CS301",
+  "courseName": "Data Structures",
+  "semester": 4,
+  "attendance": 85
+}
+
+### 11. PUT / update non-existent enrollment (HTTP 404)
+PUT {{baseUrl}}/api/enrollments/999
+Content-Type: application/json
+
+{
+  "studentName": "Ghost Student",
+  "courseCode": "CS399",
+  "courseName": "Unknown",
+  "semester": 1,
+  "attendance": 50
+}
+
+### 12. DELETE enrollment by valid ID (HTTP 200)
+DELETE {{baseUrl}}/api/enrollments/602
+
+### 13. DELETE enrollment with non-existent ID (HTTP 404)
+DELETE {{baseUrl}}/api/enrollments/999

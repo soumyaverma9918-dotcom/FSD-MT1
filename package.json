@@ -1,0 +1,15 @@
+{
+  "name": "student-course-enrollment-api",
+  "version": "1.0.0",
+  "description": "SET B - Student Course Enrollment REST API using Node.js and Express.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "author": "Soumya Verma (CSE 36)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

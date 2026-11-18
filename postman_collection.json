@@ -1,0 +1,169 @@
+{
+  "info": {
+    "name": "Student Course Enrollment API (SET B) - Soumya Verma CSE 36",
+    "_postman_id": "c8e21a34-2b4f-4a87-9bc1-12a87645ef19",
+    "description": "Postman Collection for SET B - Student Course Enrollment REST API (Node.js & Express.js)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET All Enrollments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments"]
+        }
+      }
+    },
+    {
+      "name": "GET Low Attendance Enrollments (< 75)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/low-attendance",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "low-attendance"]
+        }
+      }
+    },
+    {
+      "name": "Filter by Semester (semester=3)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/filter?semester=3",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "filter"],
+          "query": [
+            {
+              "key": "semester",
+              "value": "3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET Enrollment by ID (601)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/601",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "601"]
+        }
+      }
+    },
+    {
+      "name": "GET Enrollment by ID (Non-existent 999 -> 404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "999"]
+        }
+      }
+    },
+    {
+      "name": "POST New Enrollment (Valid -> 201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentName\": \"Ishita Rao\",\n  \"courseCode\": \"CS315\",\n  \"courseName\": \"Operating Systems\",\n  \"semester\": 3,\n  \"attendance\": 88\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments"]
+        }
+      }
+    },
+    {
+      "name": "POST New Enrollment (Invalid attendance > 100 -> 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentName\": \"Invalid Student\",\n  \"courseCode\": \"CS320\",\n  \"courseName\": \"Compiler Design\",\n  \"semester\": 3,\n  \"attendance\": 105\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments"]
+        }
+      }
+    },
+    {
+      "name": "PUT Update Enrollment (601 -> 200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentName\": \"Aarav Gupta\",\n  \"courseCode\": \"CS301\",\n  \"courseName\": \"Data Structures\",\n  \"semester\": 4,\n  \"attendance\": 85\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/601",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "601"]
+        }
+      }
+    },
+    {
+      "name": "DELETE Enrollment (602 -> 200)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/enrollments/602",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "enrollments", "602"]
+        }
+      }
+    }
+  ]
+}
